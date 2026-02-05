@@ -66,7 +66,7 @@
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.5, delay: 0.3 }}
-             className="text-sm sm:text-sm md:text-base text-muted-foreground max-w-[200px] sm:max-w-xs md:max-w-md lg:mx-auto mb-5 sm:mb-6 md:mb-8"
+             className="text-sm sm:text-sm md:text-base text-muted-foreground max-w-[240px] sm:max-w-xs md:max-w-md lg:mx-auto mb-5 sm:mb-6 md:mb-8"
              >
                Crafting high-performance web applications with the{" "}
                <span className="text-primary font-semibold">MERN Stack</span>. 
