@@ -10,7 +10,7 @@
        <div className="absolute inset-0 bg-hero-gradient" />
        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
  
-      <div className="section-container relative z-10 w-full px-4 sm:px-6">
+      <div className="section-container relative z-10 w-full pl-0 pr-2 sm:pl-2 sm:pr-4">
         <div className="flex flex-row items-center justify-between gap-3 sm:gap-6 md:gap-8 lg:gap-4 min-h-[calc(100vh-5rem)] lg:min-h-0">
            {/* Hero Photo - Left Side */}
            <motion.div
@@ -25,7 +25,7 @@
                <img
                  src={heroPhoto}
                  alt="Rishabh Panwar"
-                className="relative w-48 h-[280px] sm:w-64 sm:h-[360px] md:w-80 md:h-[420px] lg:w-[450px] lg:h-[650px] xl:w-[500px] xl:h-[720px] object-cover object-top"
+                className="relative w-44 h-[340px] sm:w-72 sm:h-[400px] md:w-96 md:h-[480px] lg:w-[450px] lg:h-[650px] xl:w-[500px] xl:h-[720px] object-cover object-top"
                />
              </div>
            </motion.div>
