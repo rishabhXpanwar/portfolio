@@ -1,0 +1,196 @@
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ 
+ /* Rishabh Panwar Portfolio Design System
+    Premium dark theme with cyan accents - recruiter-focused */
+ 
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+ 
+ @layer base {
+   :root {
+     /* Dark theme as default */
+     --background: 222 47% 5%;
+     --foreground: 210 40% 98%;
+ 
+     --card: 222 47% 8%;
+     --card-foreground: 210 40% 98%;
+ 
+     --popover: 222 47% 8%;
+     --popover-foreground: 210 40% 98%;
+ 
+     /* Primary - Cyan/Teal accent */
+     --primary: 187 92% 50%;
+     --primary-foreground: 222 47% 5%;
+ 
+     --secondary: 222 47% 12%;
+     --secondary-foreground: 210 40% 98%;
+ 
+     --muted: 222 47% 15%;
+     --muted-foreground: 215 20% 55%;
+ 
+     --accent: 187 92% 50%;
+     --accent-foreground: 222 47% 5%;
+ 
+     --destructive: 0 84% 60%;
+     --destructive-foreground: 210 40% 98%;
+ 
+     --border: 222 47% 15%;
+     --input: 222 47% 12%;
+     --ring: 187 92% 50%;
+ 
+     --radius: 0.75rem;
+ 
+     /* Custom colors */
+     --glow: 187 92% 50%;
+     --gradient-start: 187 92% 50%;
+     --gradient-end: 220 90% 60%;
+     
+     /* Skill category colors */
+     --skill-frontend: 187 92% 50%;
+     --skill-backend: 142 76% 45%;
+     --skill-tools: 280 85% 60%;
+     --skill-concepts: 35 92% 55%;
+   }
+ }
+ 
+ @layer base {
+   * {
+     @apply border-border;
+   }
+ 
+   html {
+     scroll-behavior: smooth;
+   }
+ 
+   body {
+     @apply bg-background text-foreground font-sans antialiased;
+     font-family: 'Inter', sans-serif;
+   }
+ 
+   ::selection {
+     @apply bg-primary/30 text-foreground;
+   }
+ }
+ 
+ @layer components {
+   /* Glass card effect */
+   .glass-card {
+     @apply bg-card/50 backdrop-blur-xl border border-border/50 rounded-xl;
+   }
+ 
+   /* Gradient text */
+   .gradient-text {
+     @apply bg-gradient-to-r from-primary via-blue-400 to-primary bg-clip-text text-transparent;
+   }
+ 
+   /* Glow effect */
+   .glow {
+     box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.5);
+   }
+ 
+   .glow-sm {
+     box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.4);
+   }
+ 
+   /* Section styles */
+   .section-container {
+     @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+   }
+ 
+   .section-title {
+     @apply text-3xl sm:text-4xl font-bold mb-4;
+   }
+ 
+   .section-subtitle {
+     @apply text-muted-foreground text-lg max-w-2xl;
+   }
+ 
+   /* Skill progress bar */
+   .skill-progress {
+     @apply h-2 rounded-full bg-muted overflow-hidden;
+   }
+ 
+   .skill-progress-bar {
+     @apply h-full rounded-full transition-all duration-1000 ease-out;
+   }
+ 
+   /* Link hover underline effect */
+   .link-underline {
+     @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full;
+   }
+ 
+   /* Project card hover effect */
+   .project-card {
+     @apply glass-card overflow-hidden transition-all duration-300 hover:border-primary/50 hover:glow-sm;
+   }
+ 
+   /* Code font */
+   .font-mono {
+     font-family: 'JetBrains Mono', monospace;
+   }
+ }
+ 
+ @layer utilities {
+   /* Fade in animation */
+   .animate-fade-in {
+     animation: fadeIn 0.6s ease-out forwards;
+   }
+ 
+   .animate-fade-in-up {
+     animation: fadeInUp 0.6s ease-out forwards;
+   }
+ 
+   .animate-slide-in-left {
+     animation: slideInLeft 0.6s ease-out forwards;
+   }
+ 
+   .animate-slide-in-right {
+     animation: slideInRight 0.6s ease-out forwards;
+   }
+ 
+   /* Stagger delay utilities */
+   .delay-100 { animation-delay: 100ms; }
+   .delay-200 { animation-delay: 200ms; }
+   .delay-300 { animation-delay: 300ms; }
+   .delay-400 { animation-delay: 400ms; }
+   .delay-500 { animation-delay: 500ms; }
+ }
+ 
+ @keyframes fadeIn {
+   from { opacity: 0; }
+   to { opacity: 1; }
+ }
+ 
+ @keyframes fadeInUp {
+   from { 
+     opacity: 0; 
+     transform: translateY(30px); 
+   }
+   to { 
+     opacity: 1; 
+     transform: translateY(0); 
+   }
+ }
+ 
+ @keyframes slideInLeft {
+   from { 
+     opacity: 0; 
+     transform: translateX(-30px); 
+   }
+   to { 
+     opacity: 1; 
+     transform: translateX(0); 
+   }
+ }
+ 
+ @keyframes slideInRight {
+   from { 
+     opacity: 0; 
+     transform: translateX(30px); 
+   }
+   to { 
+     opacity: 1; 
+     transform: translateX(0); 
+   }
+ }
