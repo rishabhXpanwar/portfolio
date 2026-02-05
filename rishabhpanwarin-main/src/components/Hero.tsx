@@ -25,7 +25,7 @@
                <img
                  src={heroPhoto}
                  alt="Rishabh Panwar"
-                className="relative w-[280px] h-[400px] sm:w-64 sm:h-[360px] md:w-80 md:h-[420px] lg:w-[450px] lg:h-[650px] xl:w-[500px] xl:h-[720px] object-cover object-top"
+                className="relative w-64 h-[380px] sm:w-80 sm:h-[450px] md:w-80 md:h-[420px] lg:w-[450px] lg:h-[650px] xl:w-[500px] xl:h-[720px] object-cover object-top"
                />
              </div>
            </motion.div>
