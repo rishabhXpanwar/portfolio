@@ -1,28 +1,58 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, Star } from "lucide-react";
+import { ExternalLink, Github, Star, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import neoshopProducts from "@/assets/neoshop-products.png";
 import neoshopCart from "@/assets/neoshop-cart.png";
 import neoshopSuccess from "@/assets/neoshop-success.png";
+import meetproLanding from "@/assets/meetpro-landing.png";
+import meetproMeetMode from "@/assets/meetpro-meetmode.png";
+import meetproAiMode from "@/assets/meetpro-aimode.png";
 
-const featuredProject = {
-  title: "NeoShop",
-  subtitle: "Full Stack E-Commerce Platform",
-  description:
-    "A complete e-commerce solution built with the MERN stack featuring JWT authentication, role-based access control, Redux state management, and Stripe payment integration. Includes product browsing, shopping cart, order management, and admin dashboard.",
-  tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Redux", "Stripe", "JWT"],
-  liveUrl: "https://neo-cart-ecommerce.vercel.app/",
-  githubUrl: "https://github.com/rishabhXpanwar/NeoCart-ecommerce",
-  images: [neoshopProducts, neoshopCart, neoshopSuccess],
-  highlights: [
-    "Secure checkout with Stripe webhooks",
-    "Role-based admin dashboard",
-    "Real-time cart updates",
-    "Order tracking system",
-  ],
-};
+const featuredProjects = [
+  
+  {
+    id: "meetpro",
+    title: "MeetPro",
+    subtitle: "Conference & AI Interview Platform",
+    description:
+      "A peer-to-peer video conferencing platform with two distinct modes. Normal Mode supports real-time meetings with host controls (kick, mute, screen share, chat). AI Mode powers smart interview sessions — the AI analyzes candidate resumes, generates a profile summary, and conducts adaptive questioning with live face detection, scoring, and spectator support for interviewers.",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Socket.io", "WebRTC", "Gemini AI"],
+    liveUrl: "https://conference-cum-ai-interview-platfor.vercel.app/",
+    githubUrl: "https://github.com/rishabhXpanwar/Conference-cum-Ai-Interview-Platform",
+    images: [meetproLanding, meetproMeetMode, meetproAiMode],
+    imageAlts: ["MeetPro Landing Page", "MeetPro Meet Mode Dashboard", "MeetPro AI Interview Studio"],
+    highlights: [
+      "WebRTC peer-to-peer video conferencing",
+      "AI resume analysis & adaptive questions",
+      "Live face detection & candidate scoring",
+      "Host controls: kick, mute, screen share",
+    ],
+    badge: "AI-Powered Project",
+    BadgeIcon: Cpu,
+  },
+  {
+    id: "neoshop",
+    title: "NeoShop",
+    subtitle: "Full Stack E-Commerce Platform",
+    description:
+      "A complete e-commerce solution built with the MERN stack featuring JWT authentication, role-based access control, Redux state management, and Stripe payment integration. Includes product browsing, shopping cart, order management, and admin dashboard.",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Redux", "Stripe", "JWT"],
+    liveUrl: "https://neo-cart-ecommerce.vercel.app/",
+    githubUrl: "https://github.com/rishabhXpanwar/NeoCart-ecommerce",
+    images: [neoshopProducts, neoshopCart, neoshopSuccess],
+    imageAlts: ["NeoShop Products Page", "NeoShop Cart", "NeoShop Order Success"],
+    highlights: [
+      "Secure checkout with Stripe webhooks",
+      "Role-based admin dashboard",
+      "Real-time cart updates",
+      "Order tracking system",
+    ],
+    badge: "Featured Project",
+    BadgeIcon: Star,
+  }
+];
 
 const otherProjects = [
   {
@@ -73,93 +103,112 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        {/* Featured Project - NeoShop */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-20"
-        >
-          <div className="glass-card overflow-hidden glow">
-            <div className="flex items-center gap-2 px-6 py-3 border-b border-border/50">
-              <Star className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-primary">Featured Project</span>
-            </div>
+        {/* Featured Projects */}
+        <div className="flex flex-col gap-12 mb-20">
+          {featuredProjects.map((project, i) => {
+            const { BadgeIcon } = project;
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
+              >
+                <div className="glass-card overflow-hidden glow">
+                  <div className="flex items-center gap-2 px-6 py-3 border-b border-border/50">
+                    <BadgeIcon className="w-5 h-5 text-primary" />
+                    <span className="text-sm font-medium text-primary">{project.badge}</span>
+                  </div>
 
-            <div className="grid lg:grid-cols-2 gap-8 p-6 lg:p-8">
-              {/* Project Info */}
-              <div className="flex flex-col justify-center">
-                <h3 className="text-3xl font-bold mb-2">{featuredProject.title}</h3>
-                <p className="text-primary font-medium mb-4">{featuredProject.subtitle}</p>
-                <p className="text-muted-foreground mb-6 leading-relaxed">{featuredProject.description}</p>
+                  <div className="grid lg:grid-cols-2 gap-8 p-6 lg:p-8">
+                    {/* Project Info */}
+                    <div className="flex flex-col justify-center">
+                      <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
+                      <p className="text-primary font-medium mb-4">{project.subtitle}</p>
+                      <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
 
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wider">
-                    Key Features
-                  </h4>
-                  <ul className="grid grid-cols-2 gap-2">
-                    {featuredProject.highlights.map((highlight, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
+                      <div className="mb-6">
+                        <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wider">
+                          Key Features
+                        </h4>
+                        <ul className="grid grid-cols-2 gap-2">
+                          {project.highlights.map((highlight, idx) => (
+                            <li key={idx} className="flex items-center gap-2 text-sm">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                              {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 text-xs font-mono bg-secondary rounded-full text-secondary-foreground"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex gap-4">
+                        <Button asChild className="gap-2">
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="w-4 h-4" />
+                            Live Demo
+                          </a>
+                        </Button>
+                        <Button variant="outline" asChild className="gap-2">
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className="w-4 h-4" />
+                            Source Code
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Project Screenshots */}
+                    <div className="relative">
+                      <div className="grid grid-cols-2 gap-4">
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          className="col-span-2 rounded-lg overflow-hidden border border-border/50 shadow-2xl"
+                        >
+                          <img
+                            src={project.images[0]}
+                            alt={project.imageAlts[0]}
+                            className="w-full h-auto"
+                          />
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
+                        >
+                          <img
+                            src={project.images[1]}
+                            alt={project.imageAlts[1]}
+                            className="w-full h-auto"
+                          />
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
+                        >
+                          <img
+                            src={project.images[2]}
+                            alt={project.imageAlts[2]}
+                            className="w-full h-auto"
+                          />
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {featuredProject.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs font-mono bg-secondary rounded-full text-secondary-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4">
-                  <Button asChild className="gap-2">
-                    <a href={featuredProject.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4" />
-                      Live Demo
-                    </a>
-                  </Button>
-                  <Button variant="outline" asChild className="gap-2">
-                    <a href={featuredProject.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4" />
-                      Source Code
-                    </a>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Project Screenshots */}
-              <div className="relative">
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="col-span-2 rounded-lg overflow-hidden border border-border/50 shadow-2xl"
-                  >
-                    <img src={featuredProject.images[0]} alt="NeoShop Products Page" className="w-full h-auto" />
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
-                  >
-                    <img src={featuredProject.images[1]} alt="NeoShop Cart" className="w-full h-auto" />
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
-                  >
-                    <img src={featuredProject.images[2]} alt="NeoShop Order Success" className="w-full h-auto" />
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
 
         {/* Other Projects Grid */}
         <div>
