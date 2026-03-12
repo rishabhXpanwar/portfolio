@@ -12,17 +12,21 @@ const skillCategories = [
       { name: "HTML/CSS", level: 95 },
       { name: "Redux", level: 85 },
       { name: "Tailwind CSS", level: 88 },
+      { name: "Three.js", level: 70 },
     ],
   },
   {
     title: "Backend",
     color: "skill-backend",
     skills: [
-      { name: "Node.js", level: 88 },
+      { name: "Node.js", level: 92 },
       { name: "Express.js", level: 90 },
       { name: "MongoDB", level: 85 },
+      { name: "MySQL", level: 80 },
       { name: "REST APIs", level: 92 },
-      { name: "JWT Auth", level: 88 },
+      { name: "JWT Auth", level: 95 },
+      { name: "Socket.io", level: 89 },
+      { name: "WebRTC", level: 78 },
     ],
   },
   {
@@ -40,6 +44,8 @@ const skillCategories = [
     color: "skill-concepts",
     skills: [
       { name: "Git & GitHub", level: 90 },
+      { name: "Generative AI", level: 80 },
+      { name: "Speech Recognition", level: 75 },
       { name: "Stripe Integration", level: 90 },
       { name: "NPM", level: 88 },
       { name: "VS Code", level: 95 },
