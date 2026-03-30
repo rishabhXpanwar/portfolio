@@ -21,6 +21,13 @@ const Hero = () => {
       div.innerHTML = scrollingText;
     });
 
+    // Keep desktop visual richness, but favor a lighter rendering path on tablets/mobiles.
+    const isTabletOrMobile = window.matchMedia("(max-width: 1024px)").matches;
+    if (isTabletOrMobile) {
+      setRenderMode("cpu");
+      return;
+    }
+
     // Prefer richer effects only when the browser reports WebGL support.
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
@@ -101,14 +108,14 @@ const Hero = () => {
       </div>
 
       {/* Bottom CTA Section - Fixed at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 pb-8 pt-16 bg-gradient-to-t from-background via-background/80 to-transparent">
-        <div className="flex flex-col items-center gap-4">
+      <div className="hero-cta-shell absolute bottom-0 left-0 right-0 z-30 pb-8 pt-16 bg-gradient-to-t from-background via-background/80 to-transparent">
+        <div className="hero-cta-content flex flex-col items-center gap-4">
           {/* Tagline above buttons */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg sm:text-xl md:text-2xl text-muted-foreground text-center max-w-2xl px-4"
+            className="hero-cta-tagline text-lg sm:text-xl md:text-2xl text-muted-foreground text-center max-w-2xl px-4"
           >
             Building <span className="text-primary font-semibold">Scalable</span> Solutions — <span className="text-primary font-semibold">MERN Stack</span> Expert
           </motion.p>
@@ -117,7 +124,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-4"
+            className="hero-cta-actions flex flex-wrap justify-center gap-4"
           >
             <Button size="lg" className="gap-2 glow text-base px-8" asChild>
               <a href="#projects">
@@ -137,7 +144,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex justify-center gap-6"
+            className="hero-social-links flex justify-center gap-6"
           >
             <a
               href="https://github.com/rishabhXpanwar"
@@ -171,7 +178,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-            className="mt-2"
+            className="hero-scroll-indicator mt-2"
           >
             <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
               <motion.div
