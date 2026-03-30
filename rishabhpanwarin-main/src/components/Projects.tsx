@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, Star, Cpu } from "lucide-react";
+import { ExternalLink, Github, Star, Cpu, School } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import neoshopProducts from "@/assets/neoshop-products.png";
 import neoshopCart from "@/assets/neoshop-cart.png";
@@ -9,6 +9,9 @@ import neoshopSuccess from "@/assets/neoshop-success.png";
 import meetproLanding from "@/assets/meetpro-landing.png";
 import meetproMeetMode from "@/assets/meetpro-meetmode.png";
 import meetproAiMode from "@/assets/meetpro-aimode.png";
+import educorpMain from "@/assets/educorp-main.png";
+import educorpTeacherDashboard from "@/assets/edu-dashboard-1.png";
+import educorpPrincipalDashboard from "@/assets/edu-dashboard-2.png";
 
 const featuredProjects = [
   
@@ -31,6 +34,30 @@ const featuredProjects = [
     ],
     badge: "AI-Powered Project",
     BadgeIcon: Cpu,
+  },
+  {
+    id: "educorp-erp",
+    title: "Edu-Corp ERP",
+    subtitle: "Full-Stack Multi-Tenant School Management Platform",
+    description:
+      "A comprehensive educational ERP system that unifies academics, administration, finance, HR, and communication in one role-aware platform. Built for modern K-12 schools with tenant isolation, secure role-based access, and real-time dashboards for principals, teachers, students, and parents.",
+    tech: ["React", "Vite", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "Socket.io"],
+    liveUrl: "https://black-smoke-035ba8700.6.azurestaticapps.net",
+    githubUrl: "https://github.com/rishabhXpanwar/Edu-Corp-ERP",
+    images: [educorpMain, educorpTeacherDashboard, educorpPrincipalDashboard],
+    imageAlts: [
+      "Edu-Corp ERP Landing Page",
+      "Edu-Corp ERP Teacher Dashboard",
+      "Edu-Corp ERP Principal Dashboard",
+    ],
+    highlights: [
+      "Multi-tenant architecture with school-level data isolation",
+      "9 role-based dashboards with fine-grained permissions",
+      "Real-time notifications and analytics-driven school operations",
+      "Academic, HR, fee, salary, library, and transport workflows",
+    ],
+    badge: "Enterprise ERP Project",
+    BadgeIcon: School,
   },
   {
     id: "neoshop",
@@ -60,7 +87,7 @@ const otherProjects = [
     description:
       "Full-featured task management application with authentication, task filters, reminders, and category organization.",
     tech: ["React.js", "Node.js", "MongoDB", "Express.js"],
-    liveUrl: "#",
+    liveUrl: "https://taskmanager-with-auth.vercel.app/",
     githubUrl: "https://github.com/rishabhXpanwar/taskmanager-with-auth.git",
   },
   {
@@ -181,26 +208,30 @@ const Projects = () => {
                             className="w-full h-auto"
                           />
                         </motion.div>
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
-                        >
-                          <img
-                            src={project.images[1]}
-                            alt={project.imageAlts[1]}
-                            className="w-full h-auto"
-                          />
-                        </motion.div>
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
-                        >
-                          <img
-                            src={project.images[2]}
-                            alt={project.imageAlts[2]}
-                            className="w-full h-auto"
-                          />
-                        </motion.div>
+                        {project.images[1] && (
+                          <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
+                          >
+                            <img
+                              src={project.images[1]}
+                              alt={project.imageAlts[1] || `${project.title} Screenshot 2`}
+                              className="w-full h-auto"
+                            />
+                          </motion.div>
+                        )}
+                        {project.images[2] && (
+                          <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
+                          >
+                            <img
+                              src={project.images[2]}
+                              alt={project.imageAlts[2] || `${project.title} Screenshot 3`}
+                              className="w-full h-auto"
+                            />
+                          </motion.div>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -1,11 +1,11 @@
+ @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
  @tailwind base;
  @tailwind components;
  @tailwind utilities;
  
  /* Rishabh Panwar Portfolio Design System
     Premium dark theme with cyan accents - recruiter-focused */
- 
- @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
  
  @layer base {
    :root {
@@ -184,13 +184,385 @@
    }
  }
  
- @keyframes slideInRight {
-   from { 
-     opacity: 0; 
-     transform: translateX(30px); 
-   }
-   to { 
-     opacity: 1; 
-     transform: translateX(0); 
-   }
- }
+@keyframes slideInRight {
+  from { 
+    opacity: 0; 
+    transform: translateX(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+/* ========================================
+   HERO 3D CUBE ANIMATION STYLES - FULLSCREEN
+   ======================================== */
+
+/* Fullscreen hero container */
+.hero-fullscreen-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: hsl(var(--background));
+}
+
+/* Full container - scales to fill screen */
+.hero-container-full {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+/* Background image - fullscreen */
+.hero-background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  transform: scale(1.03) translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Animated hue overlay - on background only */
+.hero-hue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, hsl(var(--primary)) 0%, hsl(220 90% 60%) 100%);
+  opacity: 0.35;
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: opacity;
+}
+
+.hero-hue.animated {
+  animation: none;
+}
+
+/* Cube container - centered in viewport */
+.hero-cube-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+/* Character image - FOREGROUND (in front of text) */
+.hero-boy-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 10;
+  transform: scale(1.02) translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+/* 3D Cube - scaled up for fullscreen */
+.hero-cube {
+  position: relative;
+  width: 100vw;
+  max-width: 1200px;
+  height: 250px;
+  transform-style: preserve-3d;
+  perspective: 600px;
+  perspective-origin: 51% 70%;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Cube faces */
+.hero-face {
+  position: absolute;
+  width: 100%;
+  max-width: 1200px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: transparent;
+  border: 0 solid #000;
+  opacity: 0.6;
+  backface-visibility: visible;
+}
+
+.hero-top,
+.hero-bottom {
+  width: 1200px;
+  height: 1200px;
+}
+
+/* Text styling - larger for fullscreen */
+.hero-face p {
+  white-space: nowrap;
+  overflow: visible;
+  display: inline-flex;
+  width: max-content;
+  min-width: max-content;
+  flex-shrink: 0;
+  align-items: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: clamp(4rem, 10vw, 8rem);
+  padding-top: 20px;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.hero-scroll-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 1.25rem;
+}
+
+.hero-face p .hero-name {
+  color: hsl(var(--primary));
+  text-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+  animation: hero-name-color-shift 22s ease-in-out infinite;
+}
+
+/* Face transforms - adjusted for larger cube */
+.hero-front {
+  transform: translateZ(600px);
+  display: none;
+}
+
+.hero-back {
+  transform: translateZ(-600px) rotateY(180deg) scaleX(-1);
+}
+
+.hero-left {
+  transform: translateX(-600px) rotateY(-90deg) scaleX(-1);
+}
+
+.hero-right {
+  transform: translateX(600px) rotateY(90deg) scaleX(-1);
+}
+
+.hero-top {
+  transform: translateY(-600px) rotateX(90deg) scaleY(-1);
+}
+
+.hero-bottom {
+  transform: translateY(-350px) rotateX(-90deg) scaleY(-1);
+}
+
+/* Text scroll animations - faster for shorter text */
+.hero-left p {
+  animation: hero-left-scroll 72s linear infinite, hero-text-color-shift 22s ease-in-out infinite;
+}
+
+.hero-back p {
+  animation: hero-back-scroll 72s linear infinite, hero-text-color-shift 22s ease-in-out infinite;
+}
+
+.hero-right p {
+  animation: hero-right-scroll 72s linear infinite, hero-text-color-shift 22s ease-in-out infinite;
+}
+
+/* Reflection cube */
+.hero-cube-container-reflect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 250px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(6px);
+  opacity: 0.28;
+  z-index: 3;
+  will-change: transform, opacity;
+}
+
+.hero-cube-container-reflect .hero-cube {
+  perspective-origin: 51% -30%;
+}
+
+.hero-cube-container-reflect .hero-back {
+  transform: translateZ(-600px) rotateY(180deg) scaleX(-1) scaleY(-1);
+}
+
+.hero-cube-container-reflect .hero-left {
+  transform: translateX(-600px) rotateY(-90deg) scaleX(-1) scaleY(-1);
+}
+
+.hero-cube-container-reflect .hero-right {
+  transform: translateX(600px) rotateY(90deg) scaleX(-1) scaleY(-1);
+}
+
+.hero-cube-container-reflect p {
+  transform: scaleY(70%);
+}
+
+/* Hero Keyframe Animations - faster for branding text */
+@keyframes hero-left-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes hero-back-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes hero-right-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes hero-text-color-shift {
+  0%,
+  100% {
+    color: hsl(210 40% 96% / 0.92);
+    text-shadow: 0 0 24px rgba(255, 255, 255, 0.18);
+  }
+  50% {
+    color: hsl(var(--primary) / 0.92);
+    text-shadow: 0 0 30px hsl(var(--primary) / 0.45);
+  }
+}
+
+@keyframes hero-name-color-shift {
+  0%,
+  100% {
+    color: hsl(var(--primary));
+    text-shadow: 0 0 40px hsl(var(--primary) / 0.55);
+  }
+  50% {
+    color: hsl(195 100% 78%);
+    text-shadow: 0 0 42px hsl(195 100% 78% / 0.6);
+  }
+}
+
+@keyframes hero-hue-pulse {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes hero-bg-drift {
+  from {
+    transform: scale(1.03) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.09) translate3d(-1.2%, -0.6%, 0);
+  }
+}
+
+@keyframes hero-foreground-drift {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.05) translate3d(1%, 0.8%, 0);
+  }
+}
+
+[data-render-mode="gpu"] .hero-hue.animated {
+  animation: hero-hue-pulse 6s ease-in-out infinite;
+}
+
+[data-render-mode="gpu"] .hero-background-image {
+  animation: hero-bg-drift 28s ease-in-out infinite alternate;
+}
+
+[data-render-mode="gpu"] .hero-boy-image {
+  animation: hero-foreground-drift 22s ease-in-out infinite alternate;
+}
+
+[data-render-mode="cpu"] .hero-hue {
+  display: none;
+}
+
+[data-render-mode="cpu"] .hero-cube-container-reflect {
+  display: none;
+}
+
+[data-render-mode="cpu"] .hero-face p {
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-render-mode="cpu"] .hero-left p,
+[data-render-mode="cpu"] .hero-back p,
+[data-render-mode="cpu"] .hero-right p {
+  animation-duration: 86s, 22s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background-image,
+  .hero-boy-image,
+  .hero-hue.animated,
+  .hero-left p,
+  .hero-back p,
+  .hero-right p {
+    animation: none !important;
+  }
+
+  .hero-cube-container-reflect {
+    display: none;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-cube {
+    height: 180px;
+  }
+  
+  .hero-face {
+    height: 180px;
+  }
+  
+  .hero-face p {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+  
+  .hero-cube-container-reflect {
+    transform: translate(-50%, calc(-50% + 180px));
+  }
+}

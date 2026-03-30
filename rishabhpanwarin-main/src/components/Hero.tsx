@@ -1,151 +1,190 @@
- import { motion } from "framer-motion";
- import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
- import { Button } from "@/components/ui/button";
- import heroPhoto from "@/assets/hero-photo.png";
- 
- const Hero = () => {
-   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden pt-20 sm:pt-20 lg:pt-0">
-       {/* Background Effects */}
-       <div className="absolute inset-0 bg-hero-gradient" />
-       <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
- 
-      <div className="section-container relative z-10 w-full pl-0 pr-2 sm:pl-2 sm:pr-4">
-        <div className="flex flex-row items-center justify-between gap-3 sm:gap-6 md:gap-8 lg:gap-4 min-h-[calc(100vh-5rem)] lg:min-h-0">
-           {/* Hero Photo - Left Side */}
-           <motion.div
-             initial={{ opacity: 0, scale: 0.9 }}
-             animate={{ opacity: 1, scale: 1 }}
-             transition={{ duration: 0.6, delay: 0.2 }}
-             className="flex-shrink-0 relative lg:mt-32"
-           >
-             {/* Photo container - clean cutout */}
-            <div className="relative lg:h-[85vh] lg:max-h-[650px] flex items-center lg:items-end justify-center">
-               {/* Photo - clean, no effects */}
-               <img
-                 src={heroPhoto}
-                 alt="Rishabh Panwar"
-                className="relative w-44 h-[340px] sm:w-72 sm:h-[400px] md:w-96 md:h-[480px] lg:w-[450px] lg:h-[650px] xl:w-[500px] xl:h-[720px] object-cover object-top"
-               />
-             </div>
-           </motion.div>
- 
-            {/* Text Content - Right Side */}
-           <div className="flex-1 text-left lg:text-center lg:max-w-[65%] flex flex-col items-start lg:items-center justify-center">
-             <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.5 }}
-              className="mb-3 sm:mb-4 md:mb-6"
-             >
-              <span className="inline-block px-3 py-1.5 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full glass-card text-xs sm:text-xs md:text-sm text-primary font-medium backdrop-blur-md">
-                 Available for opportunities
-               </span>
-             </motion.div>
- 
-             <motion.h1
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-6 leading-tight"
-             >
-               Hi, I'm{" "}
-               <span className="gradient-text">Rishabh Panwar</span>
-             </motion.h1>
- 
-             <motion.p
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-3 sm:mb-3 md:mb-4"
-             >
-               Full Stack Web Developer
-             </motion.p>
- 
-             <motion.p
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.5, delay: 0.3 }}
-             className="text-sm sm:text-sm md:text-base text-muted-foreground max-w-[240px] sm:max-w-xs md:max-w-md lg:mx-auto mb-5 sm:mb-6 md:mb-8"
-             >
-               Crafting high-performance web applications with the{" "}
-               <span className="text-primary font-semibold">MERN Stack</span>. 
-               Passionate about building scalable solutions and exceptional user experiences.
-             </motion.p>
- 
-             <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.5, delay: 0.4 }}
-             className="flex flex-col sm:flex-row gap-3 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-12"
-             >
-            <Button size="sm" className="gap-2 glow text-sm sm:text-sm md:h-11 md:px-8 h-9 px-4" asChild>
-                 <a href="#projects">
-                   View Projects
-                <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
-                 </a>
-               </Button>
-            <Button variant="outline" size="sm" className="gap-2 text-sm sm:text-sm md:h-11 md:px-8 h-9 px-4" asChild>
-                 <a href="/resume.pdf" download="Rishabh_Panwar_Resume.pdf">
-                <Download className="w-4 h-4 sm:w-4 sm:h-4" />
-                    Resume
-                 </a>
-               </Button>
-             </motion.div>
- 
-             <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.5, delay: 0.5 }}
-             className="flex gap-4 sm:gap-5 md:gap-6"
-             >
-               <a
-                 href="https://github.com/rishabhXpanwar"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                 aria-label="GitHub"
-               >
-              <Github className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-               </a>
-               <a
-                 href="https://www.linkedin.com/in/rishabhxpanwar"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                 aria-label="LinkedIn"
-               >
-              <Linkedin className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-               </a>
-               <a
-                 href="mailto:rishabhpanwar84499@gmail.com"
-                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                 aria-label="Email"
-               >
-              <Mail className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-               </a>
-             </motion.div>
-           </div>
-         </div>
- 
-         {/* Scroll indicator */}
-         <motion.div
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ delay: 1, duration: 0.5 }}
-           className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block"
-         >
-           <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
-             <motion.div
-               animate={{ y: [0, 8, 0] }}
-               transition={{ duration: 1.5, repeat: Infinity }}
-               className="w-1.5 h-1.5 rounded-full bg-primary"
-             />
-           </div>
-         </motion.div>
-       </div>
-     </section>
-   );
- };
- 
- export default Hero;
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+// Personal branding text for seamless scrolling cube faces
+const marqueeLine = `Hi, 👋 I'm <span class="hero-name">Rishabh Panwar</span> --- Full Stack Web Developer`;
+const marqueeSegment = `${marqueeLine} --- `;
+const marqueeTrack = marqueeSegment.repeat(10);
+const scrollingText = `<p><span class="hero-scroll-track">${marqueeTrack}</span><span class="hero-scroll-track" aria-hidden="true">${marqueeTrack}</span></p>`;
+
+const Hero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [renderMode, setRenderMode] = useState<"gpu" | "cpu">("gpu");
+
+  useEffect(() => {
+    // Insert text into cube faces
+    const textDivs =
+      containerRef.current?.querySelectorAll<HTMLElement>(".hero-cube-text") ?? [];
+    textDivs.forEach((div) => {
+      div.innerHTML = scrollingText;
+    });
+
+    // Prefer richer effects only when the browser reports WebGL support.
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      setRenderMode("cpu");
+      return;
+    }
+
+    const canvas = document.createElement("canvas");
+    const gl =
+      (canvas.getContext("webgl2") as WebGL2RenderingContext | null) ||
+      (canvas.getContext("webgl") as WebGLRenderingContext | null);
+
+    if (!gl) {
+      setRenderMode("cpu");
+      return;
+    }
+
+    // Prefer CPU mode when the renderer string indicates software fallback.
+    const rendererInfo = gl.getExtension("WEBGL_debug_renderer_info") as {
+      UNMASKED_RENDERER_WEBGL: number;
+    } | null;
+    const renderer = rendererInfo
+      ? String(gl.getParameter(rendererInfo.UNMASKED_RENDERER_WEBGL))
+      : "";
+    const softwareRenderer = /swiftshader|llvmpipe|software/i.test(renderer);
+
+    setRenderMode(softwareRenderer ? "cpu" : "gpu");
+  }, []);
+
+  return (
+    <section
+      id="hero"
+      className="h-screen w-full relative overflow-hidden"
+      data-render-mode={renderMode}
+    >
+      {/* Fullscreen 3D Cube Container */}
+      <div ref={containerRef} className="hero-fullscreen-container">
+        <div className="hero-container-full">
+          {/* Animated hue overlay */}
+          <div className="hero-hue animated"></div>
+          
+          {/* Background and character images */}
+          <img 
+            className="hero-background-image" 
+            src="https://drive.google.com/thumbnail?id=1_ZMV_LcmUXLsRokuz6WXGyN9zVCGfAHp&sz=w1920" 
+            alt="Background"
+          />
+          <img 
+            className="hero-boy-image" 
+            src="https://drive.google.com/thumbnail?id=1eGqJskQQgBJ67myGekmo4YfIVI3lfDTm&sz=w1920" 
+            alt="Character"
+          />
+          
+          {/* Main 3D Cube */}
+          <div className="hero-cube-container">
+            <div className="hero-cube">
+              <div className="hero-face hero-top"></div>
+              <div className="hero-face hero-bottom"></div>
+              <div className="hero-face hero-left hero-cube-text"></div>
+              <div className="hero-face hero-right hero-cube-text"></div>
+              <div className="hero-face hero-front"></div>
+              <div className="hero-face hero-back hero-cube-text"></div>
+            </div>
+          </div>
+          
+          {/* Reflection Cube */}
+          <div className="hero-cube-container-reflect">
+            <div className="hero-cube hero-cube-reflected">
+              <div className="hero-face hero-top"></div>
+              <div className="hero-face hero-bottom"></div>
+              <div className="hero-face hero-left hero-cube-text"></div>
+              <div className="hero-face hero-right hero-cube-text"></div>
+              <div className="hero-face hero-front"></div>
+              <div className="hero-face hero-back hero-cube-text"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom CTA Section - Fixed at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-30 pb-8 pt-16 bg-gradient-to-t from-background via-background/80 to-transparent">
+        <div className="flex flex-col items-center gap-4">
+          {/* Tagline above buttons */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-lg sm:text-xl md:text-2xl text-muted-foreground text-center max-w-2xl px-4"
+          >
+            Building <span className="text-primary font-semibold">Scalable</span> Solutions — <span className="text-primary font-semibold">MERN Stack</span> Expert
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            <Button size="lg" className="gap-2 glow text-base px-8" asChild>
+              <a href="#projects">
+                View Projects
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" className="gap-2 text-base px-8" asChild>
+              <a href="/resume.pdf" download="Rishabh_Panwar_Resume.pdf">
+                <Download className="w-5 h-5" />
+                Resume
+              </a>
+            </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex justify-center gap-6"
+          >
+            <a
+              href="https://github.com/rishabhXpanwar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+              aria-label="GitHub"
+            >
+              <Github className="w-6 h-6" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rishabhxpanwar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-6 h-6" />
+            </a>
+            <a
+              href="mailto:rishabhpanwar84499@gmail.com"
+              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+              aria-label="Email"
+            >
+              <Mail className="w-6 h-6" />
+            </a>
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="mt-2"
+          >
+            <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-1.5 h-1.5 rounded-full bg-primary"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
