@@ -104,6 +104,11 @@ const Hero = () => {
               <div className="hero-face hero-back hero-cube-text"></div>
             </div>
           </div>
+
+          {/* Phone-only static branding text */}
+          <div className="hero-mobile-static-text">
+            Hi, 👋 I&apos;m <span className="hero-mobile-static-name">Rishabh Panwar </span><br></br><br></br><span className="hero-mobile-static-role">Full Stack Web Developer</span>
+          </div>
         </div>
       </div>
 
