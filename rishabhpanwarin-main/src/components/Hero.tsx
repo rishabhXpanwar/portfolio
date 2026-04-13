@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import heroBackgroundImage from "@/assets/Background-image.jpg";
+import heroCharacterImage from "@/assets/Character-Image.jpg";
 
 // Personal branding text for seamless scrolling cube faces
 const marqueeLine = `Hi, 👋 I'm <span class="hero-name">Rishabh Panwar</span> --- Full Stack Web Developer`;
@@ -72,12 +74,12 @@ const Hero = () => {
           {/* Background and character images */}
           <img 
             className="hero-background-image" 
-            src="https://drive.google.com/thumbnail?id=1_ZMV_LcmUXLsRokuz6WXGyN9zVCGfAHp&sz=w1920" 
+            src={heroBackgroundImage} 
             alt="Background"
           />
           <img 
             className="hero-boy-image" 
-            src="https://drive.google.com/thumbnail?id=1eGqJskQQgBJ67myGekmo4YfIVI3lfDTm&sz=w1920" 
+            src={heroCharacterImage} 
             alt="Character"
           />
           

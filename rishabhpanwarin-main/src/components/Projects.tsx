@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, Github, Star, Cpu, School } from "lucide-react";
+import { useRef, useState } from "react";
+import { ExternalLink, Github, Star, Cpu, School, Rocket, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import neoshopProducts from "@/assets/neoshop-products.png";
 import neoshopCart from "@/assets/neoshop-cart.png";
@@ -9,6 +9,9 @@ import neoshopSuccess from "@/assets/neoshop-success.png";
 import meetproLanding from "@/assets/meetpro-landing.png";
 import meetproMeetMode from "@/assets/meetpro-meetmode.png";
 import meetproAiMode from "@/assets/meetpro-aimode.png";
+import blitzstack1 from "@/assets/blitzstack-1.png";
+import blitzstack2 from "@/assets/blitzstack-2.png";
+import blitzstack3 from "@/assets/blitzstack-3.png";
 import educorpMain from "@/assets/educorp-main.png";
 import educorpTeacherDashboard from "@/assets/edu-dashboard-1.png";
 import educorpPrincipalDashboard from "@/assets/edu-dashboard-2.png";
@@ -34,6 +37,26 @@ const featuredProjects = [
     ],
     badge: "AI-Powered Project",
     BadgeIcon: Cpu,
+  },
+  {
+    id: "blitzstack",
+    title: "BlitzStack",
+    subtitle: "Enterprise-Grade Development Agency",
+    description:
+      "A forward-thinking development agency that builds enterprise-grade MERN applications for startups and local businesses. Leverages AI-powered development workflows to deliver scalable, high-performance web products 10x faster—turning concepts into production-ready software in days.",
+    tech: ["React (Vite/TS)", "React Router v6", "Framer Motion", "Tailwind CSS", "Express API", "Nodemailer"],
+    liveUrl: "https://www.blitzstack.in",
+    githubUrl: "",
+    images: [blitzstack1, blitzstack2, blitzstack3],
+    imageAlts: ["BlitzStack Landing Page", "BlitzStack Services", "BlitzStack Process"],
+    highlights: [
+      "AI-powered development workflows",
+      "Interactive canvas flow-field background",
+      "Express API + Nodemailer contact system",
+      "Rapid concept-to-production delivery",
+    ],
+    badge: "Development Agency",
+    BadgeIcon: Rocket,
   },
   {
     id: "educorp-erp",
@@ -110,6 +133,26 @@ const otherProjects = [
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [selectedImageState, setSelectedImageState] = useState<{ images: string[]; currentIndex: number } | null>(null);
+
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedImageState) return;
+    setSelectedImageState({
+      ...selectedImageState,
+      currentIndex: (selectedImageState.currentIndex + 1) % selectedImageState.images.length,
+    });
+  };
+
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedImageState) return;
+    setSelectedImageState({
+      ...selectedImageState,
+      currentIndex:
+        (selectedImageState.currentIndex - 1 + selectedImageState.images.length) % selectedImageState.images.length,
+    });
+  };
 
   return (
     <section id="projects" className="py-24 relative">
@@ -186,12 +229,14 @@ const Projects = () => {
                             Live Demo
                           </a>
                         </Button>
-                        <Button variant="outline" asChild className="gap-2">
-                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-4 h-4" />
-                            Source Code
-                          </a>
-                        </Button>
+                        {project.githubUrl && (
+                          <Button variant="outline" asChild className="gap-2">
+                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                              <Github className="w-4 h-4" />
+                              Source Code
+                            </a>
+                          </Button>
+                        )}
                       </div>
                     </div>
 
@@ -200,7 +245,8 @@ const Projects = () => {
                       <div className="grid grid-cols-2 gap-4">
                         <motion.div
                           whileHover={{ scale: 1.02 }}
-                          className="col-span-2 rounded-lg overflow-hidden border border-border/50 shadow-2xl"
+                          className="col-span-2 rounded-lg overflow-hidden border border-border/50 shadow-2xl cursor-zoom-in"
+                          onClick={() => setSelectedImageState({ images: project.images, currentIndex: 0 })}
                         >
                           <img
                             src={project.images[0]}
@@ -211,7 +257,8 @@ const Projects = () => {
                         {project.images[1] && (
                           <motion.div
                             whileHover={{ scale: 1.05 }}
-                            className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
+                            className="rounded-lg overflow-hidden border border-border/50 shadow-xl cursor-zoom-in"
+                            onClick={() => setSelectedImageState({ images: project.images, currentIndex: 1 })}
                           >
                             <img
                               src={project.images[1]}
@@ -223,7 +270,8 @@ const Projects = () => {
                         {project.images[2] && (
                           <motion.div
                             whileHover={{ scale: 1.05 }}
-                            className="rounded-lg overflow-hidden border border-border/50 shadow-xl"
+                            className="rounded-lg overflow-hidden border border-border/50 shadow-xl cursor-zoom-in"
+                            onClick={() => setSelectedImageState({ images: project.images, currentIndex: 2 })}
                           >
                             <img
                               src={project.images[2]}
@@ -294,6 +342,62 @@ const Projects = () => {
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {selectedImageState && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImageState(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center cursor-default"
+              onClick={(e) => e.stopPropagation()} // Prevent bubbling up to the backdrop
+            >
+              {selectedImageState.images.length > 1 && (
+                <button
+                  className="absolute left-2 md:-left-12 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full transition-colors z-10"
+                  onClick={handlePrevImage}
+                  aria-label="Previous Image"
+                >
+                  <ChevronLeft size={32} />
+                </button>
+              )}
+
+              <img
+                key={selectedImageState.currentIndex}
+                src={selectedImageState.images[selectedImageState.currentIndex]}
+                className="max-w-full max-h-full rounded-lg shadow-2xl object-contain animate-in fade-in zoom-in duration-300"
+                alt="Enlarged Project Screenshot"
+              />
+
+              {selectedImageState.images.length > 1 && (
+                <button
+                  className="absolute right-2 md:-right-12 top-1/2 -translate-y-1/2 p-2 text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full transition-colors z-10"
+                  onClick={handleNextImage}
+                  aria-label="Next Image"
+                >
+                  <ChevronRight size={32} />
+                </button>
+              )}
+
+              <button
+                className="absolute top-4 right-4 md:-top-12 md:-right-12 p-2 text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full transition-colors z-10"
+                onClick={() => setSelectedImageState(null)}
+                aria-label="Close Gallery"
+              >
+                <X size={24} />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
